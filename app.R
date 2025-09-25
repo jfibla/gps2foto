@@ -10,6 +10,35 @@ library(DT)
 library(mime)
 library(leaflet.extras)
 
+# --- Ensure ExifTool is available on shinyapps.io ---
+ensure_exiftool <- function(show = TRUE) {
+  ok <- FALSE
+  # 1) Prova de configurar ExifTool si ja existeix
+  try(exiftoolr::configure_exiftoolr(quiet = TRUE), silent = TRUE)
+  v <- try(exiftoolr::exif_call("-ver"), silent = TRUE)
+  if (!inherits(v, "try-error")) ok <- TRUE
+  
+  # 2) Si no està, descarrega'l i configura'l
+  if (!ok) {
+    try(exiftoolr::install_exiftool(), silent = FALSE)  # baixa l'script d'ExifTool al HOME del usuari
+    exiftoolr::configure_exiftoolr(quiet = TRUE)
+    v <- try(exiftoolr::exif_call("-ver"), silent = TRUE)
+    ok <- !inherits(v, "try-error")
+  }
+  
+  if (show) {
+    if (ok) {
+      message(sprintf("ExifTool ready. Version: %s; Path: %s",
+                      tryCatch(as.character(v), error = function(e) "?"),
+                      tryCatch(exiftoolr::exiftool_path(), error = function(e) "?")))
+    } else {
+      warning("ExifTool is still not available after install/configure attempts.")
+    }
+  }
+  invisible(ok)
+}
+
+
 # ---------- Diccionario i18n ----------
 i18n <- list(
   es = list(
@@ -26,7 +55,10 @@ i18n <- list(
     theme      = "Tema",
     darkmode   = "Modo oscuro",
     saveone    = "Asignar GPS a la foto seleccionada",
-    saveall    = "Asignar GPS a TODAS las seleccionadas"
+    saveall    = "Asignar GPS a TODAS las seleccionadas",
+    banner_max  = "Tamaño recomendado máximo: %d MB por foto o sumatorio de las fotos cargadas.",
+    banner_warn = "Si la foto es más grande, puede no cargarse correctamente en el servidor.",
+    banner_tip  = "Consejo: reduce la resolución o súbelas en lotes más pequeños."
   ),
   ca = list(
     title      = "Assignar coordenades a JPG amb clic al mapa (OSM)",
@@ -42,7 +74,10 @@ i18n <- list(
     theme      = "Tema",
     darkmode   = "Mode fosc",
     saveone    = "Assignar GPS a la foto seleccionada",
-    saveall    = "Assignar GPS a TOTES les seleccionades"
+    saveall    = "Assignar GPS a TOTES les seleccionades",
+    banner_max  = "Mida màxima recomanada: %d MB per foto o sumatori de les fotos carregades.",
+    banner_warn = "Si la foto és més gran, pot no carregar-se correctament al servidor.",
+    banner_tip  = "Consell: redueix la resolució o puja-les en lots més petits."
   ),
   en = list(
     title      = "Assign GPS coordinates to JPG by map click (OSM)",
@@ -58,7 +93,10 @@ i18n <- list(
     theme      = "Theme",
     darkmode   = "Dark mode",
     saveone    = "Assign GPS to selected photo",
-    saveall    = "Assign GPS to ALL selected photos"
+    saveall    = "Assign GPS to ALL selected photos",
+    banner_max  = "Recommended max size: %d MB per photo (or summatory of loaded photos).",
+    banner_warn = "If the photo is larger, it may fail to upload on the server.",
+    banner_tip  = "Tip: reduce the resolution or upload in smaller batches."
   )
 )
 
@@ -72,6 +110,9 @@ ensure_gps_cols <- function(df) {
   df$GPSLongitude <- suppressWarnings(as.numeric(df$GPSLongitude))
   df
 }
+
+# Defineix un llindar “intern” de seguretat, p. ex. 200 MB per fitxer
+MAX_MB_PER_FILE <- 200   # límit recomanat per fitxer
 
 # ---------- UI con bslib ----------
 ui <- page_navbar(
@@ -92,6 +133,8 @@ ui <- page_navbar(
     layout_sidebar(
       sidebar = sidebar(
         width = 360,
+        # Banner multilingüe
+        uiOutput("banner_ui"),
         
         # 1) Subir fotos
         uiOutput("photos_ui"),
@@ -100,8 +143,13 @@ ui <- page_navbar(
         h5(textOutput("viewer_txt")),
         uiOutput("picker_row"),
         div(class = "d-flex gap-2 mb-2",
-            actionButton("prev_photo", label = "…"),
-            actionButton("next_photo", label = "…")),
+            actionButton("prev_photo", label = "…", 
+                         class = "btn-sm",
+                         style = "padding:2px 8px; font-size:0.85em;"),
+            actionButton("next_photo", label = "…", 
+                         class = "btn-sm",
+                         style = "padding:2px 8px; font-size:0.85em;")
+        ),
         imageOutput("photo_view", height = "auto"),
         hr(),
         
@@ -137,10 +185,26 @@ ui <- page_navbar(
 server <- function(input, output, session) {
   options(shiny.maxRequestSize = 500*1024^2)
   
+  ensure_exiftool()  # <- IMPORTANT a shinyapps.io
+  
   output$photos_ui <- renderUI({
     lang <- input$lang %||% "es"
     fileInput("photos", tr("photos", lang),
               multiple = TRUE, accept = c(".jpg", ".jpeg"))
+  })
+  
+  output$banner_ui <- renderUI({
+    lang <- input$lang %||% "es"
+    div(
+      class = "alert alert-info",
+      style = "font-size: 0.9em; line-height:1.3;",
+      shiny::icon("info-circle"), " ",
+      span(sprintf(tr("banner_max", lang), MAX_MB_PER_FILE),
+           style = "font-weight: bold;"),
+      br(),
+      tr("banner_warn", lang), br(),
+      tr("banner_tip",  lang)
+    )
   })
   
   output$downloads_ui <- renderUI({
@@ -197,16 +261,33 @@ server <- function(input, output, session) {
     m
   })
   
-  # Carga fotos
   observeEvent(input$photos, {
     req(input$photos)
+    df <- input$photos
+    
+    # Si el servidor ha rebut els fitxers, df$size existeix
+    if (!is.null(df$size)) {
+      overs <- which(df$size > MAX_MB_PER_FILE * 1024^2)
+      if (length(overs)) {
+        noms <- paste(df$name[overs], collapse = ", ")
+        showNotification(
+          paste0("S'han ignorat per mida (> ", MAX_MB_PER_FILE, " MB): ", noms),
+          type = "warning", duration = 8
+        )
+        df <- df[-overs, , drop = FALSE]
+      }
+    }
+    
+    validate(need(nrow(df) > 0, "No s'ha carregat cap fitxer vàlid."))
+    
     rv$df <- tibble::tibble(
-      file = input$photos$datapath,
-      name = input$photos$name
+      file = df$datapath,
+      name = df$name
     ) |> ensure_gps_cols()
+    
     active_idx(if (nrow(rv$df)) 1 else NA_integer_)
-    output$tbl <- renderDT(rv$df |> select(name, GPSLatitude, GPSLongitude),
-                           selection = "multiple", options = list(pageLength = 5))
+    output$tbl <- DT::renderDT(rv$df |> dplyr::select(name, GPSLatitude, GPSLongitude),
+                               selection = "multiple", options = list(pageLength = 5))
   })
   
   # Tabla
