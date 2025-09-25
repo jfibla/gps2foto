@@ -46,10 +46,18 @@ The updated photos can be downloaded to your computer with the coordinates embed
   - `mime`  
   - `exiftoolr`
 
-Additionally, the app requires [ExifTool](https://exiftool.org/) installed on your system, since `exiftoolr` is just an R interface to it.
+Additionally, the app requires [ExifTool](https://exiftool.org/) installed on your system (read at bottom), since `exiftoolr` is just an R interface to it.
 
 ---
+### Hosted demo
 
+You can try an interactive instance of **gps2foto** here:
+
+**[https://pyrprs.shinyapps.io/GPS_to_FOTO/]**
+
+This server is meant for functionality testing and demos. Performance and availability may vary depending on server load.
+
+---
 ## ▶️ Running the App
 
 Clone or download this repository, then launch the app from R:
@@ -90,3 +98,41 @@ Browser downloads rely on Shiny’s downloadHandler — they work in hosted apps
 📜 License
 
 MIT License © 2025 Joan Fibla
+
+#################################################################################################################
+#################################################################################################################
+
+## How to install exiftool on iOS and Windows environment
+🔧 macOS
+Option 1: Using Homebrew (recommended)
+If you already use Homebrew:
+> brew install exiftool
+Check installation:
+> exiftool -ver
+Option 2: Manual download
+Go to Phil Harvey’s official ExifTool page:
+https://exiftool.org
+Download the ExifTool-12.xx.dmg (the version number may vary).
+Install the .dmg as usual.
+After install, you may need to create a symbolic link:
+> sudo ln -s /usr/local/bin/exiftool /usr/bin/exiftool
+so it’s available from terminal.
+
+🪟 Windows
+Option 1: Pre-built executable (easy)
+Download the Windows Executable from:
+https://exiftool.org
+ → “Windows Executable”.
+It’s usually called exiftool(-k).exe
+Rename it to exiftool.exe.
+Put exiftool.exe somewhere convenient, e.g.:
+C:\Windows\
+or create a folder like C:\ExifTool\ and add it to your PATH.
+Test in Command Prompt or PowerShell:
+> exiftool -ver
+
+Option 2: Install via Chocolatey (package manager)
+If you use Chocolatey:
+> choco install exiftool
+Check:
+> exiftool -ver
