@@ -77,7 +77,7 @@ Download all (ZIP): packages all modified photos into a ZIP archive.
 
 ## 🗺️ Example Workflow
 
-Upload photo1.jpg and photo2.jpg.
+Upload photo1.jpg ("Es Castell" Menorca, Spain) and photo2.jpg (Asebot, Ethiopia).
 
 Read their metadata → shows that neither has GPS coordinates.
 
