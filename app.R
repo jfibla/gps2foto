@@ -42,13 +42,23 @@ i18n <- list(
     darkmode   = "Modo oscuro",
     saveone    = "Asignar GPS a la foto seleccionada",
     saveall    = "Asignar GPS a TODAS las seleccionadas",
-    banner_max  = "Tamaño recomendado máximo: %d MB por foto o el sumatorio de todas las fotos cargadas.",
+    banner_info = "<ol style='margin-left:1.2rem;'>
+      <b>Como proceder:</b>
+      <li>Carga la(s) foto(s).</li>
+      <li>Visualízalas en el visor (opción de zoom).</li>
+      <li>Lee los metadatos.</li>
+      <li>Ve a la tabla y selecciona la foto.</li>
+      <li>Ve al mapa, busca la localización y haz clic.</li>
+      <li>Asigna las coordenadas a la foto.</li>
+      <li>Guarda la última foto o varias en un zip.</li>
+    </ol>",    
+    banner_max  = "💾 Tamaño recomendado máximo: %d MB por foto o el sumatorio de todas las fotos cargadas.",
     banner_warn = "Si la foto es más grande, puede no cargarse correctamente en el servidor.",
     banner_tip  = "Consejo: reduce la resolución o súbelas en lotes más pequeños.",
     ignored_big = "Se han ignorado por tamaño (> %d MB): %s",
     no_valid    = "No se ha cargado ningún archivo válido.",
     exif_read_fail = "No se pudieron leer metadatos EXIF.",
-    last_click_lbl = "Último clic: lat=%.6f, lon=%.6f",
+    last_click_lbl = "at=%.6f, lon=%.6f",
     new_gps_popup  = "Nuevo GPS",
     copy_saved_in  = "Copia guardada en: %s",
     copies_saved   = "Copias guardadas: %s",
@@ -60,7 +70,10 @@ i18n <- list(
     zoom    = "Zoom (%)",
     close   = "Cerrar",
     gps = "Coordenadas asignadas",
-    info = "Tamaño fotos"
+    info = "Info",
+    github_title = "💻 Código en GitHub",
+    github_msg   = "Puedes descargar el código desde aquí:",
+    github_btn   = "Cerrar"
   ),
   ca = list(
     title      = "Assignar coordenades a JPG amb clic al mapa (OSM)",
@@ -77,13 +90,23 @@ i18n <- list(
     darkmode   = "Mode fosc",
     saveone    = "Assignar GPS a la foto seleccionada",
     saveall    = "Assignar GPS a TOTES les seleccionades",
-    banner_max  = "Mida màxima recomanada: %d MB per foto o el sumatori de totes les fotos carregades.",
+    banner_info = "<ol style='margin-left:1.2rem;'>
+      <b>Com procedir:</b>
+      <li>Carrega la(es) foto(s).</li>
+      <li>Visualitza-les al visor (opció de zoom).</li>
+      <li>Llegeix les metadades.</li>
+      <li>Vés a la taula i selecciona la foto.</li>
+      <li>Vés al mapa, cerca la localització i fes clic.</li>
+      <li>Assigna les coordenades a la foto.</li>
+      <li>Guarda la darrera foto o varies en un zip.</li>
+    </ol>",    
+    banner_max  = "💾 Mida màxima recomanada: %d MB per foto o el sumatori de totes les fotos carregades.",
     banner_warn = "Si la foto és més gran, pot no carregar-se correctament al servidor.",
     banner_tip  = "Consell: redueix la resolució o puja-les en lots més petits.",
     ignored_big = "S'han ignorat per mida (> %d MB): %s",
     no_valid    = "No s'ha carregat cap fitxer vàlid.",
     exif_read_fail = "No s'han pogut llegir metadades EXIF.",
-    last_click_lbl = "Darrer clic: lat=%.6f, lon=%.6f",
+    last_click_lbl = "lat=%.6f, lon=%.6f",
     new_gps_popup  = "Nou GPS",
     copy_saved_in  = "Còpia desada a: %s",
     copies_saved   = "Còpies desades: %s",
@@ -95,7 +118,10 @@ i18n <- list(
     zoom    = "Zoom (%)",
     close   = "Tancar",
     gps = "Coordenades assignades",
-    info = "Mida fotos"
+    info = "Info",
+    github_title = "💻 Codi al GitHub",
+    github_msg   = "Pots descarregar el codi des d’aquí:",
+    github_btn   = "Tancar"
   ),
   en = list(
     title      = "Assign GPS coordinates to JPG by map click (OSM)",
@@ -112,13 +138,23 @@ i18n <- list(
     darkmode   = "Dark mode",
     saveone    = "Assign GPS to selected photo",
     saveall    = "Assign GPS to ALL selected photos",
-    banner_max  = "Recommended max size: %d MB per photo or summatory of loaded photos.",
+    banner_info = "<ol style='margin-left:1.2rem;'>
+      <b>How to run:</b>
+      <li>Upload the photo(s).</li>
+      <li>Preview them in the viewer (zoom available).</li>
+      <li>Read the metadata.</li>
+      <li>Go to the table and select the photo.</li>
+      <li>Go to the map, find the location and click.</li>
+      <li>Assign the coordinates to the photo.</li>
+      <li>Save the last photo or several in a zip.</li>
+    </ol>",    
+    banner_max  = "💾 Recommended max size: %d MB per photo or summatory of loaded photos.",
     banner_warn = "If the photo is larger, it may fail to upload on the server.",
     banner_tip  = "Tip: reduce the resolution or upload in smaller batches.",
     ignored_big = "Ignored due to size (> %d MB): %s",
     no_valid    = "No valid file was uploaded.",
     exif_read_fail = "Could not read EXIF metadata.",
-    last_click_lbl = "Last click: lat=%.6f, lon=%.6f",
+    last_click_lbl = "lat=%.6f, lon=%.6f",
     new_gps_popup  = "New GPS",
     copy_saved_in  = "Copy saved in: %s",
     copies_saved   = "Copies saved: %s",
@@ -130,13 +166,17 @@ i18n <- list(
     zoom    = "Zoom (%)",
     close   = "Close",
     gps = "Assigned coordinates",
-    info = "Photo size"
+    info = "Info",
+    github_title = "💻 GitHub Code",
+    github_msg   = "You can download the code from here:",
+    github_btn   = "Close"
   )
 )
 
 # ---------- Helpers ----------
 `%||%` <- function(x, y) if (is.null(x) || length(x) == 0) y else x
 tr <- function(key, lang) i18n[[lang]][[key]] %||% key
+
 ensure_gps_cols <- function(df) {
   if (!"GPSLatitude"  %in% names(df)) df$GPSLatitude  <- NA_real_
   if (!"GPSLongitude" %in% names(df)) df$GPSLongitude <- NA_real_
@@ -146,6 +186,7 @@ ensure_gps_cols <- function(df) {
 }
 
 MAX_MB_PER_FILE <- 200  # límite recomendado por archivo
+
 
 # ---------- UI con bslib ----------
 ui <- page_navbar(
@@ -158,24 +199,29 @@ ui <- page_navbar(
                     choices = c("Español" = "es", "Català" = "ca", "English" = "en"),
                     selected = "ca", width = "160px"),
         checkboxInput("dark", label = NULL, value = FALSE),
-        tags$span(id = "darklabel", "Dark")
+        tags$span(id = "darklabel", ".")
     )
   ),
   nav_panel(
-    "App",
+    ".",
     layout_sidebar(
       sidebar = sidebar(
         width = 360,
-       # uiOutput("banner_ui"),
-       # hr(),
-       div(
-         class = "d-flex align-items-center gap-2",
-         actionLink("show_info", label = NULL, icon = icon("info-circle")),
-         textOutput("info_btn_txt")  # etiqueta traducida del botón
-       ),
-       hr(),
+        
+        # Infos en la mateixa línia
+        div(class = "d-flex align-items-center gap-3 mb-2",
+            actionLink("show_info",   label = NULL, icon = icon("info-circle")),
+            textOutput("info_btn_txt"),
+            actionLink("show_github", label = NULL, icon = icon("github")),
+            textOutput("gh_btn_txt")
+        ),
+        hr(),
+        
+        # 1) Subir fotos
         uiOutput("photos_ui"),
         hr(),
+        
+        # 2) Visor de fotos
         h5(textOutput("viewer_txt")),
         uiOutput("picker_row"),
         div(class = "d-flex gap-2 mb-2",
@@ -189,19 +235,25 @@ ui <- page_navbar(
         ),
         imageOutput("photo_view", height = "auto"),
         hr(),
+        
+        # 3) Leer metadatos
         actionButton("read_meta", label = "…"),
         hr(),
+        
+        # 4) Asignación de coordenadas (clic en mapa)
         h6(textOutput("gps_txt")),
         verbatimTextOutput("click_info"),
         hr(),
-        # Botones de GUARDAR (actionButton, NO downloadButton)
+        
+        # 5) Guardar GPS (actionButton)
         div(class = "d-flex gap-2",
             actionButton("write_one", "…", class = "btn-primary btn-sm"),
             actionButton("write_sel", "…", class = "btn-secondary btn-sm")
         ),
         hr(),
-       # 6) Descarregar arxius
-       uiOutput("downloads_ui")
+        
+        # 6) Descargas
+        uiOutput("downloads_ui")
       ),
       card(
         h4(textOutput("title_txt")),
@@ -215,37 +267,82 @@ ui <- page_navbar(
   )
 )
 
+
 # ---------- SERVER ----------
 server <- function(input, output, session) {
   options(shiny.maxRequestSize = 500*1024^2)
   
   ensure_exiftool()
   
+  # Tags que llegirem quan reescrivim i rellegim EXIF
+  tags_needed <- c(
+    "Model","LensModel","DateTimeOriginal",
+    "ImageWidth","ImageHeight","FileSize",
+    "GPSLatitude","GPSLongitude"
+  )
+  
+  # Asegurem que meta té totes les columnes; si falta alguna, la crea amb NA
+  ensure_meta_cols <- function(meta) {
+    for (nm in tags_needed) {
+      if (!nm %in% names(meta)) meta[[nm]] <- NA
+    }
+    meta
+  }
+  
   # Texto al lado del icono de info (según idioma)
   output$info_btn_txt <- renderText({
     tr("info", input$lang %||% "es")
   })
   
-  # En fer clic al botó d'info, mostra un modal amb el contingut de l'antic banner
+  output$gh_btn_txt <- renderText({
+    "Github"
+  })
+  
+  # Modal con info de tamaños recomendados
   observeEvent(input$show_info, {
     lang <- input$lang %||% "es"
+    
     showModal(
       modalDialog(
-        title = tr("info", lang),
+        title = "ℹ️ Info",
         easyClose = TRUE,
-        size = "m",
+        size = "l",
         footer = modalButton(tr("close", lang)),
-        tags$div(
-          style = "font-size: 0.95em; line-height:1.4;",
-          tags$p(
-            sprintf(tr("banner_max", lang), MAX_MB_PER_FILE),
-            style = "font-weight:600; margin-bottom: 0.5rem;"
+        tagList(
+          div(
+            class = "mb-3",
+            HTML(sprintf("<p style='margin-bottom:0.6rem;'>%s</p>", tr("banner_info", lang)))
           ),
-          tags$p(tr("banner_warn", lang), style = "margin-bottom: 0.5rem;"),
-          tags$p(tr("banner_tip",  lang))
+          tags$hr(),
+          # --- INFO DE grandària ---
+          div(
+            class = "small",
+            HTML(sprintf(
+              "<p><strong>%s</strong></p>",
+              sprintf(tr("banner_max", lang), MAX_MB_PER_FILE)
+            )),
+           HTML(sprintf("<p>%s</p>", tr("banner_warn", lang))),
+           HTML(sprintf("<p>%s</p>", tr("banner_tip",  lang)))
+          )
         )
       )
     )
+  })
+  
+  
+  # Modal con enlace a GitHub
+  observeEvent(input$show_github, {
+    lang <- input$lang %||% "es"
+    showModal(modalDialog(
+      title = tr("github_title", lang),
+      easyClose = TRUE,
+      size = "s",
+      HTML(sprintf('<p>%s<br>
+                  <a href="https://github.com/jfibla/gps2foto" target="_blank">
+                  https://github.com/jfibla/gps2foto</a></p>',
+                   tr("github_msg", lang))),
+      footer = modalButton(tr("github_btn", lang))
+    ))
   })
   
   
@@ -365,23 +462,9 @@ server <- function(input, output, session) {
     
     active_idx(if (nrow(rv$df)) 1 else NA_integer_)
     output$tbl <- DT::renderDT(rv$df |> dplyr::select(name, GPSLatitude, GPSLongitude),
-                               selection = "multiple", options = list(pageLength = 5))
+                               selection = "multiple", options = list(pageLength = 10))
   })
-  
-  # Tabla
-  output$tbl <- renderDT({
-    req(rv$df)
-    rv$df |> select(name, GPSLatitude, GPSLongitude)
-  }, selection = "multiple", options = list(pageLength = 5))
-  
-  # Selector de fotos
-  output$picker_row <- renderUI({
-    req(rv$df)
-    lang <- input$lang %||% "es"
-    selectInput("photo_choice", tr("choose", lang),
-                choices = setNames(seq_len(nrow(rv$df)), rv$df$name),
-                selected = active_idx(), width = "100%")
-  })
+
   observeEvent(input$photo_choice, { if (!is.null(input$photo_choice)) active_idx(as.integer(input$photo_choice)) }, ignoreInit = TRUE)
   observeEvent(input$tbl_rows_selected, { if (length(input$tbl_rows_selected)) active_idx(input$tbl_rows_selected[1]) }, ignoreInit = TRUE)
   observeEvent(input$prev_photo, { req(rv$df); n <- nrow(rv$df); i <- active_idx(); if (is.na(i)) i <- 1; active_idx(if (i <= 1) n else i - 1) })
@@ -394,37 +477,62 @@ server <- function(input, output, session) {
          alt = rv$df$name[i], width = "100%")
   }, deleteFile = FALSE)
   
-  # Leer metadatos + centrar mapa si hay GPS
+  # Llegir metadades + centrar mapa si hi ha GPS
   observeEvent(input$read_meta, {
     req(rv$df)
     lang <- input$lang %||% "es"
-    meta <- try(exiftoolr::exif_read(rv$df$file, tags = c("GPSLatitude","GPSLongitude")), silent = TRUE)
+    
+    # llegim metadades extra
+    tags_needed <- c("Model", "LensModel", "DateTimeOriginal",
+                     "ImageWidth", "ImageHeight", "FileSize",
+                     "GPSLatitude", "GPSLongitude")
+    
+    
+    meta <- try(exiftoolr::exif_read(rv$df$file, tags = tags_needed), silent = TRUE)
     if (!(inherits(meta, "try-error")) && nrow(meta)) {
-      if (!"GPSLatitude" %in% names(meta))  meta$GPSLatitude  <- NA
-      if (!"GPSLongitude" %in% names(meta)) meta$GPSLongitude <- NA
-      meta2 <- meta %>% transmute(
-        file = SourceFile,
-        GPSLatitude  = suppressWarnings(as.numeric(GPSLatitude)),
-        GPSLongitude = suppressWarnings(as.numeric(GPSLongitude))
+      meta <- ensure_meta_cols(meta)
+      meta2 <- meta %>% dplyr::transmute(
+        file = .data$SourceFile,
+        Model, LensModel, DateTimeOriginal,
+        ImageWidth, ImageHeight, FileSize,
+        GPSLatitude  = suppressWarnings(as.numeric(.data$GPSLatitude)),
+        GPSLongitude = suppressWarnings(as.numeric(.data$GPSLongitude))
       )
-      rv$df <- rv$df %>% select(-any_of(c("GPSLatitude","GPSLongitude"))) %>%
-        left_join(meta2, by = "file") %>% ensure_gps_cols()
+      rv$df <- rv$df %>%
+        dplyr::select(-dplyr::any_of(c(
+          "Model","LensModel","DateTimeOriginal",
+          "ImageWidth","ImageHeight","FileSize",
+          "GPSLatitude","GPSLongitude"
+        ))) %>%
+        dplyr::left_join(meta2, by = "file") %>%
+        ensure_gps_cols()
     } else {
       rv$df <- ensure_gps_cols(rv$df)
-      showNotification(tr("exif_read_fail", lang), type = "warning")
+      showNotification(tr("exif_read_fail", input$lang %||% "es"), type = "warning")
     }
-    output$tbl <- renderDT(rv$df %>% select(name, GPSLatitude, GPSLongitude),
-                           selection = "multiple", options = list(pageLength = 5))
+       
+    # refresquem taula → mostra tots els camps seleccionats
+    output$tbl <- renderDT(
+      rv$df %>% dplyr::select(
+        name, Model, LensModel, DateTimeOriginal,
+        ImageWidth, ImageHeight, FileSize,
+        GPSLatitude, GPSLongitude
+      ),
+      selection = "multiple", options = list(pageLength = 5, scrollX = TRUE)
+    )
     
+    # actualitza marcadors del mapa si hi ha GPS
     leafletProxy("map") %>% clearMarkers()
     has_gps <- rv$df %>% filter(!is.na(GPSLatitude), !is.na(GPSLongitude))
     if (nrow(has_gps)) {
       leafletProxy("map") %>%
-        addMarkers(data = has_gps, lng = ~GPSLongitude, lat = ~GPSLatitude, popup = ~name, group = "gps") %>%
+        addMarkers(data = has_gps, lng = ~GPSLongitude, lat = ~GPSLatitude,
+                   popup = ~name, group = "gps") %>%
         flyToBounds(lng1 = min(has_gps$GPSLongitude), lat1 = min(has_gps$GPSLatitude),
                     lng2 = max(has_gps$GPSLongitude), lat2 = max(has_gps$GPSLatitude))
     }
   })
+  
   
   # Clic en mapa
   observeEvent(input$map_click, {
@@ -485,40 +593,59 @@ server <- function(input, output, session) {
     dests
   }
   
-  # Guardar una
   observeEvent(input$write_one, {
     req(rv$df, rv$last_click)
+    lang  <- input$lang %||% "es"
     idx   <- if (length(input$tbl_rows_selected)) input$tbl_rows_selected[1] else 1
     files <- rv$df$file[idx]
-    lang <- input$lang %||% "es"
     
     dests <- write_gps(files, rv$last_click["lat"], rv$last_click["lon"])
     recent_dests(unique(c(recent_dests(), dests)))
     showNotification(sprintf(tr("copy_saved_in", lang), dests[1]),
                      type = "message", duration = 6)
     
-    meta <- exiftoolr::exif_read(dests, tags = c("GPSLatitude","GPSLongitude"))
+    # Rellegim EXIF amb TOTS els tags que volem mostrar
+    meta <- exiftoolr::exif_read(dests, tags = tags_needed)
     if (!inherits(meta, "try-error") && nrow(meta)) {
+      meta <- ensure_meta_cols(meta)
       meta2 <- meta %>%
-        transmute(file = SourceFile, name = basename(SourceFile),
-                  GPSLatitude = suppressWarnings(as.numeric(GPSLatitude)),
-                  GPSLongitude = suppressWarnings(as.numeric(GPSLongitude)))
-      rv$df[idx, ] <- meta2
-      rv$df <- ensure_gps_cols(rv$df)
-      output$tbl <- renderDT(rv$df %>% select(name, GPSLatitude, GPSLongitude),
-                             selection = "multiple", options = list(pageLength = 5))
-      leafletProxy("map") %>% addMarkers(
-        data = meta2, lng = ~GPSLongitude, lat = ~GPSLatitude, popup = ~name, group = "gps_new"
-      ) %>% flyTo(lng = meta2$GPSLongitude[1], lat = meta2$GPSLatitude[1], zoom = 12)
+        dplyr::transmute(
+          file = .data$SourceFile,
+          name = basename(.data$SourceFile),
+          Model, LensModel, DateTimeOriginal,
+          ImageWidth, ImageHeight, FileSize,
+          GPSLatitude  = suppressWarnings(as.numeric(.data$GPSLatitude)),
+          GPSLongitude = suppressWarnings(as.numeric(.data$GPSLongitude))
+        )
+      
+      # Actualitza NOMÉS columnes comunes (evita l’error de “recycle”)
+      common <- intersect(names(rv$df), names(meta2))
+      rv$df[idx, common] <- meta2[1, common, drop = FALSE]
+      
+      # Refresca taula i mapa
+      output$tbl <- DT::renderDT(
+        rv$df %>% dplyr::select(
+          name, Model, LensModel, DateTimeOriginal,
+          ImageWidth, ImageHeight, FileSize,
+          GPSLatitude, GPSLongitude
+        ),
+        selection = "multiple", options = list(pageLength = 5, scrollX = TRUE)
+      )
+      
+      leafletProxy("map") %>%
+        addMarkers(
+          data = meta2, lng = ~GPSLongitude, lat = ~GPSLatitude,
+          popup = ~name, group = "gps_new"
+        ) %>%
+        flyTo(lng = meta2$GPSLongitude[1], lat = meta2$GPSLatitude[1], zoom = 12)
     }
   })
   
-  # Guardar varias
   observeEvent(input$write_sel, {
     req(rv$df, rv$last_click)
+    lang  <- input$lang %||% "es"
     idx   <- if (length(input$tbl_rows_selected)) input$tbl_rows_selected else seq_len(nrow(rv$df))
     files <- rv$df$file[idx]
-    lang <- input$lang %||% "es"
     
     dests <- write_gps(files, rv$last_click["lat"], rv$last_click["lon"])
     recent_dests(unique(c(recent_dests(), dests)))
@@ -527,23 +654,63 @@ server <- function(input, output, session) {
       type = "message", duration = 6
     )
     
-    meta <- exiftoolr::exif_read(dests, tags = c("GPSLatitude","GPSLongitude"))
+    meta <- exiftoolr::exif_read(dests, tags = tags_needed)
     if (!inherits(meta, "try-error") && nrow(meta)) {
+      meta <- ensure_meta_cols(meta)
       meta2 <- meta %>%
-        transmute(file = SourceFile, name = basename(SourceFile),
-                  GPSLatitude = suppressWarnings(as.numeric(GPSLatitude)),
-                  GPSLongitude = suppressWarnings(as.numeric(GPSLongitude)))
-      rv$df[idx, ] <- meta2
-      rv$df <- ensure_gps_cols(rv$df)
-      output$tbl <- renderDT(rv$df %>% select(name, GPSLatitude, GPSLongitude),
-                             selection = "multiple", options = list(pageLength = 5))
-      leafletProxy("map") %>% addMarkers(
-        data = meta2, lng = ~GPSLongitude, lat = ~GPSLatitude, popup = ~name, group = "gps_new"
-      ) %>% flyToBounds(lng1 = min(meta2$GPSLongitude), lat1 = min(meta2$GPSLatitude),
-                        lng2 = max(meta2$GPSLongitude), lat2 = max(meta2$GPSLatitude))
+        dplyr::transmute(
+          file = .data$SourceFile,
+          name = basename(.data$SourceFile),
+          Model, LensModel, DateTimeOriginal,
+          ImageWidth, ImageHeight, FileSize,
+          GPSLatitude  = suppressWarnings(as.numeric(.data$GPSLatitude)),
+          GPSLongitude = suppressWarnings(as.numeric(.data$GPSLongitude))
+        )
+      
+      # igualem files: `idx` i `meta2` han de tenir el mateix ordre/longitud
+      if (length(idx) != nrow(meta2)) {
+        # per seguretat, fem match per nom de fitxer (basename)
+        key_old <- basename(rv$df$file[idx])
+        key_new <- meta2$name
+        match_pos <- match(key_old, key_new)
+        meta2 <- meta2[match_pos, , drop = FALSE]
+      }
+      
+      if (length(idx) != nrow(meta2)) {
+        key_old <- basename(rv$df$file[idx])
+        key_new <- meta2$name
+        match_pos <- match(key_old, key_new)
+        meta2 <- meta2[match_pos, , drop = FALSE]
+      }
+      
+      common <- intersect(names(rv$df), names(meta2))
+      rv$df[idx, common] <- meta2[, common, drop = FALSE]
+      
+      output$tbl <- DT::renderDT(
+        rv$df %>% dplyr::select(
+          name, Model, LensModel, DateTimeOriginal,
+          ImageWidth, ImageHeight, FileSize,
+          GPSLatitude, GPSLongitude
+        ),
+        selection = "multiple", options = list(pageLength = 5, scrollX = TRUE)
+      )
+      
+      leafletProxy("map") %>%
+        addMarkers(
+          data = meta2, lng = ~GPSLongitude, lat = ~GPSLatitude,
+          popup = ~name, group = "gps_new"
+        ) %>%
+        flyToBounds(
+          lng1 = min(meta2$GPSLongitude, na.rm = TRUE),
+          lat1 = min(meta2$GPSLatitude,  na.rm = TRUE),
+          lng2 = max(meta2$GPSLongitude, na.rm = TRUE),
+          lat2 = max(meta2$GPSLatitude,  na.rm = TRUE)
+        )
     }
   })
   
+  
+
   # Descargas
   
   output$downloads_ui <- renderUI({
@@ -573,29 +740,7 @@ server <- function(input, output, session) {
       utils::zip(zipfile = file, files = basename(dests), flags = "-j")
     }
   )
-  
-#  # Descargas
-#  output$dl_last <- downloadHandler(
-#    filename = function() {
-#      dests <- recent_dests(); if (!length(dests)) return("sin_archivo.txt")
-#      basename(dests[length(dests)])
-#    },
-#    content = function(file) {
-#      dests <- recent_dests(); req(length(dests) > 0)
-#      file.copy(dests[length(dests)], file, overwrite = TRUE)
-#    }
-#  )
-#  
-#  output$dl_zip <- downloadHandler(
-#    filename = function() paste0("gps2foto_", format(Sys.time(), "%Y%m%d_%H%M%S"), ".zip"),
-#    content  = function(file) {
-#      lang <- input$lang %||% "es"
-#      dests <- unique(recent_dests())
-#      validate(need(length(dests) > 0, tr("zip_empty", lang)))
-#      old <- setwd(dirname(dests[1])); on.exit(setwd(old), add = TRUE)
-#      utils::zip(zipfile = file, files = basename(dests), flags = "-j")
-#    }
-#  )
+ 
 }
 
 shinyApp(ui, server)
